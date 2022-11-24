@@ -56,8 +56,44 @@ class _HomePageState extends State<HomePage> {
                       itemCount: _apiModel.length,
                       itemBuilder: (context, index) {
                         return ListTile(
-                          title: Text(_apiModel[index].title.toString()),
-                          subtitle: Text(_apiModel[index].body.toString()),
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Title",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(_apiModel[index].title.toString()),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                            ],
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Description",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(_apiModel[index].body.toString()),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                            ],
+                          ),
                         );
                       },
                     );
