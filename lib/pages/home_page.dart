@@ -40,74 +40,69 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const CupertinoNavigationBar(
-        middle: Text("API Practice"),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: FutureBuilder(
-                future: fetchAPIModel(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: _apiModel.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Title",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
+    return Column(
+      children: [
+        Expanded(
+          child: FutureBuilder(
+              future: fetchAPIModel(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: _apiModel.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Title",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
                               ),
-                              const SizedBox(
-                                height: 5,
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Text(_apiModel[index].title.toString()),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Description",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(_apiModel[index].title.toString()),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                            ],
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "Description",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(_apiModel[index].body.toString()),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text("${snapshot.error}");
-                  } else {
-                    return const Center(
-                      child: CupertinoActivityIndicator(),
-                    );
-                  }
-                }),
-          ),
-        ],
-      ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Text(_apiModel[index].body.toString()),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                } else {
+                  return const Center(
+                    child: CupertinoActivityIndicator(),
+                  );
+                }
+              }),
+        ),
+      ],
     );
   }
 }

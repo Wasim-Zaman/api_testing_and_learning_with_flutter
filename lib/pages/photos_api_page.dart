@@ -44,33 +44,28 @@ class _PhotosAPIPageState extends State<PhotosAPIPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Home2"),
-      ),
-      body: FutureBuilder(
-        future: getPhotos(),
-        builder: (context, AsyncSnapshot<List<Photos>> snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: photos.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(snapshot.data![index].title.toString()),
-                  leading: CircleAvatar(
-                    backgroundImage:
-                        NetworkImage(snapshot.data![index].url.toString()),
-                  ),
-                );
-              },
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
-      ),
+    return FutureBuilder(
+      future: getPhotos(),
+      builder: (context, AsyncSnapshot<List<Photos>> snapshot) {
+        if (snapshot.hasData) {
+          return ListView.builder(
+            itemCount: photos.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(snapshot.data![index].title.toString()),
+                leading: CircleAvatar(
+                  backgroundImage:
+                      NetworkImage(snapshot.data![index].url.toString()),
+                ),
+              );
+            },
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     );
   }
 }

@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
   static const List<Widget> _pages = <Widget>[
     HomePage(),
     PhotosAPIPage(),
-    // UserAPIPage(),
+    UserAPIPage(),
   ];
 
   int _selectedIndex = 0;
@@ -37,9 +37,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: "My App",
       home: Scaffold(
-        // appBar: AppBar(
-        //   title: const Text("API practice"),
-        // ),
+        appBar: AppBar(
+          title: const Text("API practice"),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(
@@ -56,7 +56,10 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
           currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber,
+          onTap: (value) => _onItemTapped(value),
         ),
+        body: _pages[_selectedIndex],
       ),
     );
   }
