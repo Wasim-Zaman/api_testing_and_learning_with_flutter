@@ -22,10 +22,10 @@ class _HomePageState extends State<HomePage> {
     // Create a variable that will hold the response from the API
     final response =
         await http.get(Uri.parse("https://jsonplaceholder.typicode.com/posts"));
-    final data = jsonDecode(response.body.toString());
 
     // Check if the response is successful
     if (response.statusCode == 200) {
+      final data = jsonDecode(response.body.toString());
       // Loop through the data and create a list of APIModel objects
       for (final item in data) {
         _apiModel.add(APIModel.fromJson(item));
